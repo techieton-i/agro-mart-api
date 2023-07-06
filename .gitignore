@@ -1,0 +1,11 @@
+lib/
+node_modules
+.idea
+.env
+rescue.js
+*.lock
+.vscode
+jsconfig.json
+grupp.json
+.DS_Store
+.nyc_output/
