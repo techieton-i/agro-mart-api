@@ -12,8 +12,8 @@ const ProductSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    categories: {
-      type: Array,
+    category:{
+      type:String
     },
     size: {
       type: String,
@@ -22,12 +22,17 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    Amount: {
-      type: String,
+    amount: {
+      type: Number,
       required: true,
     },
+    user: {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'User'
+  },
+
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", ProductSchema);
+module.exports = mongoose.model("Product", ProductSchema);
