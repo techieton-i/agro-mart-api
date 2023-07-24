@@ -1,29 +1,34 @@
 const User = require("../../models/User");
-const _ = require('lodash');
-const {validateRegisterBody, validateLoginBody} = require('./auth.validation');
-const { filterJwtPayload } = require('../../utils/index');
-const { encode, validate } = require('../../utils/jwt');
-const bcrypt = require('bcrypt');
+const _ = require("lodash");
+const {
+  validateRegisterBody,
+  validateLoginBody,
+} = require("./auth.validation");
+const { filterJwtPayload } = require("../../utils/index");
+const { encode, validate } = require("../../utils/jwt");
+const bcrypt = require("bcrypt");
 
 const AuthController = {
-    async userRegistration(req, res){
-        const {error, value } = validateRegisterBody(req.body)
-        if(error){
-            return res.status(400).json({error})
-        } 
-        let user = await User.findOne({email:value.email})
-        if(user){
-            return res.status(400).json({
-                status:'error',
-                message:'email adddress already in use'
-            })
-        }
-        let role = '';
-        if (!value.role || value.role === '') {
-            role = 'user'
-        }
-        user = await User.create({...value, role})
-        user = _.pick(user, ['_id', 'role', 'email', 'lastName', 'firstName'])
+  async userRegistration(req, res) {
+    const { error, value } = validateRegisterBody(req.body);
+    if (error) {
+      return res.status(400).json({ error });
+    }
+    let user = await User.findOne({ email: value.email });
+    if (user) {
+      return res.status(400).json({
+        status: "error",
+        message: "email adddress already in use",
+      });
+    }
+    let role = "";
+    if (!value.role || value.role === "") {
+      role = "user";
+    } else {
+      role = value.role;
+    }
+    user = await User.create({ ...value, role });
+    user = _.pick(user, ["_id", "role", "email", "lastName", "firstName"]);
 
         return res.status(201).json({
             status: 'success',
