@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const OrderController = require('../controllers/order/order.controller');
-const Order = require("../models/Order");
 const asyncHandler = require("../utils/AsyncHandler");
 const auth = require('../utils/Authorization')
+const RoleGuard = require("../utils/RoleGuard");
 
 
 router.post('/create', auth, asyncHandler(OrderController.createOrder))

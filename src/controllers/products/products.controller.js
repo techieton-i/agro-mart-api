@@ -26,14 +26,9 @@ const ProductController = {
         })
     },
     async getProducts(req, res){
-        const products = await Product.find({})
-        return res.status(200).json({
-            status:'success',
-            products
-        })
-    },
-    async getSellerProducts(req, res){
-        const products = await Product.find({user:req.user._id})
+        console.log('hi')
+        const products = await Product.find()
+        console.log(products, 'here')
         return res.status(200).json({
             status:'success',
             products

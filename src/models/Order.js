@@ -29,6 +29,11 @@ const OrderSchema = new mongoose.Schema(
       type: String,
       default: "Pending",
     },
+    transaction:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Transaction'
+    },
+    isPaid:Boolean
   },
   { timestamps: true }
 );

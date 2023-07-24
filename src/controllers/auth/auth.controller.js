@@ -99,5 +99,12 @@ const AuthController = {
         const user = await User.findOneAndUpdate({ email: req.body.email }, { password: hash })
         return res.status(200).json({ message: 'Password updated' })
     },
+    async getUsers(req, res){
+      const users = await User.find({})
+      return res.status(200).json({
+        status:'success',
+        users
+      })
+    }
 }
 module.exports = AuthController

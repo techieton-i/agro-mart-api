@@ -1,4 +1,5 @@
-const Order = require('../../models/Order')
+const Order = require('../../models/Order');
+const Product = require('../../models/Product');
 const {getUniqueId} = require('../../utils/index');
 
 
