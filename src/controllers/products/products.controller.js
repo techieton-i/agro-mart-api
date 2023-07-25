@@ -41,9 +41,7 @@ const ProductController = {
     });
   },
   async getProducts(req, res) {
-    console.log("hi");
     const products = await Product.find();
-    console.log(products, "here");
     return res.status(200).json({
       status: "success",
       products,
