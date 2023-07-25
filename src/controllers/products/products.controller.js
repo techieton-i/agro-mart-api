@@ -67,6 +67,19 @@ const ProductController = {
         return res.status(200).json({
             message:'product successfully deleted'
         })
+    },
+    async rateProduct(req, res){
+        const {id} = req.params
+        let prod = await Product.findOne({_id:id})
+        // prod.ratings = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 }
+        prod.ratings = req.body.rating
+        prod.markModified('ratings')  // Add markModified because ratings is a mixed object type
+        prod.save() 
+        console.log(prod.get( 'ratings', null, {getters: false}))
+        console.log(prod)
+        return res.status(200).json({
+            message:'Success fully updated'
+        })
     }
 }
 

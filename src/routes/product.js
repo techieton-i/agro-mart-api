@@ -11,5 +11,6 @@ router.get('/', auth, asyncHandler(ProductController.getProducts))
 router.patch('/:productId', [auth, RoleGuard(['admin', 'farmer'])], asyncHandler(ProductController.updateProduct))
 router.delete('/:productId', [auth, RoleGuard(['admin', 'farmer'])], asyncHandler(ProductController.deleteProduct))
 router.get('/filter/:category', auth, asyncHandler(ProductController.filterProducts))
+router.patch('/rate/:id', auth, asyncHandler(ProductController.rateProduct))
 
 module.exports = router;
