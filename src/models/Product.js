@@ -7,13 +7,17 @@ const ProductSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    img: {
+      type: String,
+      required: true,
+    },
     desc: {
       type: String,
       required: true,
       unique: true,
     },
-    category:{
-      type:String
+    category: {
+      type: String,
     },
     size: {
       type: String,
@@ -27,10 +31,9 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
     user: {
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'User'
-  },
-
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );
