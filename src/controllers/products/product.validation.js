@@ -8,7 +8,8 @@ exports.validateProductBody = (payload) => {
       size: Joi.string().required(),
       amount: Joi.number(),
       category: Joi.string(),
-      price: Joi.number().required()
+      price: Joi.number().required(),
+      img:Joi.string()
     });
   
     return schema.validate(payload);

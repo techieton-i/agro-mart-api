@@ -48,6 +48,19 @@ const OrderController = {
         return res.status(200).json({
             message:'Order successfully deleted'
         })
+    },
+    async getPendingOrders(req, res){
+        const orders = await Order.find({status:'Pending', user:req.user._id})
+        if(!orders || orders.length < 1){
+            return res.status(400).json({
+                staus:'error',
+                message:'No Pending Orders'
+            })
+        }
+        return res.status(200).json({
+            status:'success',
+            orders
+        })
     }
 }
 
