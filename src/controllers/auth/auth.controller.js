@@ -132,9 +132,16 @@ const AuthController = {
   },
   async getUsers(req, res) {
     const users = await User.find({});
+
+    const modifiedUsers = users.map((txn, i) => {
+      delete txn._doc.password;
+
+      return { ...txn._doc, id: i };
+    });
+
     return res.status(200).json({
       status: "success",
-      users,
+      users: modifiedUsers,
     });
   },
 };
